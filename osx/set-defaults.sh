@@ -183,26 +183,6 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
-# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
-
-
-###############################################################################
-# Terminal                                                                    #
-###############################################################################
-
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
-
-# Use a modified version of the Solarized Dark theme by default in Terminal.app
-TERM_PROFILE='Solarized Dark xterm-256color';
-CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
-if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-  open "${HOME}/.dotfiles/terminal/${TERM_PROFILE}.terminal";
-  sleep 1; # Wait a bit to make sure the theme is loaded
-  defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
-  defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
-fi;
 
 
 ###############################################################################
